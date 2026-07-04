@@ -2,8 +2,24 @@ node_modules/
 data/*.db
 data/*.db*
 .env
+.envrc
 .DS_Store
 *.log
+
+# Python/editor/runtime noise from the original GitHub template.
+__pycache__/
+*.py[codz]
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.vscode/
+.idea/
+
+# Minecraft local runtime data and downloaded binaries.
 minecraft-server/.env
 minecraft-server/server.jar
 minecraft-server/paper-version.json
