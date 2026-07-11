@@ -5,6 +5,7 @@
   --line: #c9cbc3;
   --acid: #d9f253;
   --coral: #ef7654;
+  --coral-dark: #96391f;
   --blue: #87b6ff;
   --cream: #fffdf7;
   --dark: #102723;
@@ -26,7 +27,7 @@ em { font-family: "Newsreader", serif; font-weight: 400; }
 .site-header, main, footer { width: min(1280px, calc(100% - 64px)); margin-inline: auto; }
 .site-header { height: 104px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
 .wordmark { font: 500 .9rem "DM Mono", monospace; text-decoration: none; letter-spacing: -.02em; }
-.wordmark span { color: var(--coral); }
+.wordmark span { color: var(--coral-dark); }
 nav { display: flex; align-items: center; gap: 2.2rem; }
 nav a { text-decoration: none; font-size: .8rem; font-weight: 700; }
 nav a:not(.nav-cta) { position: relative; }
@@ -61,7 +62,7 @@ h2 { font-size: clamp(2.9rem, 5.2vw, 5rem); line-height: .98; letter-spacing: -.
 .card-number { position: absolute; top: 1.5rem; left: 1.5rem; z-index: 3; }
 .card-visual { flex: 1; min-height: 370px; position: relative; overflow: hidden; }
 .card-label { min-height: 120px; padding: 1.35rem .25rem .2rem; display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
-.card-kicker { display: block; margin-bottom: .75rem; opacity: .62; }
+.card-kicker { display: block; margin-bottom: .75rem; }
 .card-label h3 { margin: 0; font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1; letter-spacing: -.055em; font-weight: 600; }
 .round-arrow { flex: 0 0 auto; width: 42px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; transition: color .2s, background .2s; }
 .discipline-card:hover .round-arrow { color: var(--cream); background: var(--ink); }
