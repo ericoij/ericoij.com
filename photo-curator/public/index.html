@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Local Photo Curator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="eyebrow">LOCAL / PRIVATE / YOUR TASTE</p>
+        <h1>The Best of <em>Five Years</em></h1>
+      </div>
+      <div class="privacy"><span></span> Nothing leaves this computer</div>
+    </header>
+
+    <main>
+      <section class="control-panel">
+        <div class="source-block">
+          <span class="label">Library</span>
+          <strong id="source">Connecting…</strong>
+          <small id="model"></small>
+        </div>
+        <div class="actions">
+          <label>Scan limit <input id="scanLimit" type="number" min="1" placeholder="All" /></label>
+          <button id="scanButton">Scan library</button>
+          <label>AI batch <input id="curateLimit" type="number" min="1" max="500" value="25" /></label>
+          <button id="curateButton" class="accent">Run local curator</button>
+        </div>
+      </section>
+
+      <section class="status-card" aria-live="polite">
+        <div class="status-line"><strong id="statusMessage">Ready</strong><span id="statusNumbers"></span></div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <p id="statusError" class="error"></p>
+      </section>
+
+      <section class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="recommended">AI shortlist</button>
+        <button class="filter" data-filter="love">Awesome photos</button>
+        <button class="filter" data-filter="maybe">Just OK</button>
+        <button class="filter" data-filter="no">Pass</button>
+        <button class="filter" data-filter="unreviewed">Unreviewed</button>
+        <span id="itemCount"></span>
+      </section>
+
+      <section id="emptyState" class="empty-state">
+        <span>◎</span>
+        <h2>Your shortlist starts here.</h2>
+        <p>You worked hard for these. Teach the curator which photos show your best.</p>
+      </section>
+      <section id="grid" class="media-grid" aria-label="Curated media"></section>
+    </main>
+
+    <template id="cardTemplate">
+      <article class="media-card">
+        <div class="image-wrap">
+          <img alt="" loading="lazy" />
+          <span class="score"></span>
+          <span class="media-type"></span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="category"></span><span class="privacy-risk"></span></div>
+          <h2></h2>
+          <p class="reason"></p>
+          <p class="filename"></p>
+          <div class="decisions" role="group" aria-label="Your decision">
+            <button data-decision="love">★ Awesome</button>
+            <button data-decision="maybe">● Just OK</button>
+            <button data-decision="no">× Pass</button>
+          </div>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>

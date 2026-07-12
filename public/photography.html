@@ -3,38 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Morning Mountain, a photograph by Eric OIJ." />
+    <meta name="description" content="The Best of Five Years — a photography collection by Eric OIJ." />
     <meta name="theme-color" content="#102723" />
-    <title>Morning Mountain — Photography by Eric OIJ</title>
+    <title>The Best of Five Years — Photography by Eric OIJ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;500&amp;display=swap" rel="stylesheet" />
-    <link rel="preload" href="images/morning-mountain.jpg" as="image" />
+    <link rel="preload" href="media/photos/alpine-mirror.webp" as="image" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="main.js" defer></script>
   </head>
-  <body class="photo-page">
-    <a class="skip-link" href="#photograph">Skip to photograph</a>
+  <body class="collection-page">
+    <a class="skip-link" href="#collection">Skip to the collection</a>
     <header class="site-header">
-      <a class="wordmark" href="index.html" aria-label="Return to Eric OIJ studio">ERIC OIJ<span> / PHOTOGRAPHY</span></a>
-      <nav aria-label="Photography navigation">
-        <a class="nav-cta" href="index.html">Back to studio <span aria-hidden="true">↙</span></a>
-      </nav>
+      <a class="wordmark" href="index.html">ERIC OIJ<span> / PHOTOGRAPHY</span></a>
+      <nav aria-label="Photography navigation"><a class="nav-cta" href="index.html">Back to studio <span aria-hidden="true">↙</span></a></nav>
     </header>
-
-    <main id="photograph">
-      <figure class="photo-feature">
-        <img src="images/morning-mountain.jpg" alt="Snow-covered mountain peaks with windblown snow beneath a clear blue sky" />
-        <figcaption>
-          <h1 class="photo-title">Morning<br /><em>Mountain</em></h1>
-          <p class="photo-meta">Photograph by Eric OIJ<br />From the mountain series</p>
-        </figcaption>
-      </figure>
+    <main id="collection">
+      <section class="collection-hero" aria-labelledby="collection-title">
+        <img src="media/photos/alpine-mirror.webp" alt="Mountain reflected in still alpine water" />
+        <div class="collection-hero-shade"></div>
+        <div class="collection-hero-copy">
+          <p class="eyebrow">2021—2026 / A PERSONAL EDIT</p>
+          <h1 id="collection-title">The Best of<br /><em>Five Years.</em></h1>
+          <p>Five years of looking closely, showing up, and working hard—distilled into the photographs worth keeping close.</p>
+        </div>
+      </section>
+      <section class="collection-intro">
+        <p class="section-number">01 / THE COLLECTION</p>
+        <div><h2>Light, weather,<br /><em>and wild places.</em></h2><p>Chosen from years of photographs for atmosphere, craft, feeling, and the story each frame can hold on its own.</p></div>
+      </section>
+      <section class="photo-grid" aria-label="The Best of Five Years photographs">
+        <figure class="photo-tile photo-wide"><img src="media/photos/silver-lining.webp" alt="Sunlight tracing the edge of a dramatic cloud" loading="lazy" /><figcaption><span>01</span> Silver Lining</figcaption></figure>
+        <figure class="photo-tile photo-tall"><img src="media/photos/eastern-sierra.webp" alt="Eastern Sierra mountain landscape" loading="lazy" /><figcaption><span>02</span> Eastern Sierra</figcaption></figure>
+        <figure class="photo-tile"><img src="media/photos/bighorn.webp" alt="Bighorn sheep in the landscape" loading="lazy" /><figcaption><span>03</span> Bighorn</figcaption></figure>
+        <figure class="photo-tile"><img src="media/photos/golden-water.webp" alt="Golden light reflected across water" loading="lazy" /><figcaption><span>04</span> Golden Water</figcaption></figure>
+        <figure class="photo-tile photo-wide"><img src="media/photos/range-and-cumulus.webp" alt="Mountain range beneath towering cumulus clouds" loading="lazy" /><figcaption><span>05</span> Range and Cumulus</figcaption></figure>
+        <figure class="photo-tile"><img src="media/photos/marina-at-dusk.webp" alt="Marina settling into dusk" loading="lazy" /><figcaption><span>06</span> Marina at Dusk</figcaption></figure>
+        <figure class="photo-tile photo-tall"><img src="media/photos/magenta-storm.webp" alt="Storm clouds illuminated with magenta light" loading="lazy" /><figcaption><span>07</span> Magenta Storm</figcaption></figure>
+        <figure class="photo-tile"><img src="media/photos/framed-cloud.webp" alt="Cloud framed by the surrounding landscape" loading="lazy" /><figcaption><span>08</span> Framed Cloud</figcaption></figure>
+        <figure class="photo-tile photo-wide"><img src="media/photos/fire-in-the-sky.webp" alt="Fiery sunset filling the sky" loading="lazy" /><figcaption><span>09</span> Fire in the Sky</figcaption></figure>
+        <figure class="photo-tile"><img src="media/photos/cloud-field.webp" alt="Clouds stretching over an open field" loading="lazy" /><figcaption><span>10</span> Cloud Field</figcaption></figure>
+        <figure class="photo-tile"><img src="media/photos/mono-reflection.webp" alt="Monochrome reflection on water" loading="lazy" /><figcaption><span>11</span> Mono Reflection</figcaption></figure>
+      </section>
+      <section class="curation-note">
+        <p class="section-number">02 / THE EDIT</p>
+        <h2>Technology helps sort.<br /><em>Eric makes the choice.</em></h2>
+        <p>A private local selection agent finds strong frames, near-duplicates, and overlooked moments. Every final photograph is reviewed by hand. Originals stay private; only approved work reaches this collection.</p>
+        <div class="selection-key"><span><b>★</b> Awesome</span><span><b>●</b> Just OK</span><span><b>×</b> Pass</span><span><b>→</b> Publish the best</span></div>
+      </section>
     </main>
-
-    <footer>
-      <p>© <span id="year"></span> Eric OIJ</p>
-      <a href="index.html">Return to studio ↙</a>
-    </footer>
-    <script src="main.js"></script>
+    <footer><p>© <span id="year"></span> Eric OIJ</p><p>The Best of Five Years</p><a href="#collection">Back to top ↑</a></footer>
   </body>
 </html>

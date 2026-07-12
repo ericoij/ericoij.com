@@ -1,0 +1,25 @@
+{
+  "name": "eric-photo-curator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Privacy-first local photo and video curator powered by Ollama vision",
+  "scripts": {
+    "start": "node server.js",
+    "select-best": "node select-best.js",
+    "upload-paintings": "node upload-paintings.js",
+    "upload-infographics": "node upload-infographics.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.6.1",
+    "express": "^5.2.1",
+    "ffmpeg-static": "^5.3.0",
+    "ffprobe-static": "^3.1.0",
+    "heic-convert": "^2.1.0",
+    "sharp": "^0.34.5"
+  }
+}

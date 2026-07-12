@@ -259,3 +259,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.vercel
+.env*
+public/media/**/*.mp4

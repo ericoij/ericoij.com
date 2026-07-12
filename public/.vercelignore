@@ -1,0 +1,5 @@
+.env*
+.vercel
+media/hockey/
+media/paintings/
+media/photos/*.mp4

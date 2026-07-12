@@ -1,0 +1,11 @@
+{
+  "source": "C:\\Users\\erico\\OneDrive\\Pictures\\Camera Roll",
+  "dataDirectory": "./data",
+  "model": "gemma3:4b",
+  "ollamaUrl": "http://127.0.0.1:11434",
+  "port": 4317,
+  "years": 5,
+  "referencePaths": [
+    "C:\\Users\\erico\\OneDrive\\Pictures\\morning_mountain.jpg"
+  ]
+}
