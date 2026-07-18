@@ -6,6 +6,7 @@
   "description": "Privacy-first local photo and video curator powered by Ollama vision",
   "scripts": {
     "start": "node server.js",
+    "curate-paintings": "node curate-paintings.js",
     "curate-infographics": "node curate-infographics.js",
     "prepare-infographics": "node prepare-infographics.js",
     "select-best": "node select-best.js",

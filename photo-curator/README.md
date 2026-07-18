@@ -112,6 +112,28 @@ Only the optimized files in `../public/media/infographics/` are intended for
 the public site. As with the photo curator, the review stays local and does not
 upload, move, or delete source files.
 
+## Find photographed paintings
+
+Run the painting-specific classifier against the prepared iPhone thumbnail
+cache without uploading anything:
+
+```powershell
+npm run curate-paintings -- --data data-iphone --limit 100
+```
+
+The review is resumable. Run the same command again for the next batch, or use
+`--limit 0` to finish every remaining thumbnail. High-confidence physical
+painting candidates are written to `data-iphone/painting-curation.json`.
+The model deliberately does not infer authorship; each candidate starts with
+`authorshipConfirmed: false` for Eric to confirm during the final edit.
+
+To prioritize capture sessions around known paintings, pass comma-separated
+dates and an optional time window:
+
+```powershell
+npm run curate-paintings -- --data data-iphone --limit 0 --dates 2023-03-18,2025-01-09 --date-window-hours 36
+```
+
 ## Performance
 
 The local model remains loaded for 30 minutes between evaluations. HEIC decoding and the first model load are the slowest operations. A full 2,000-item library is intentionally resumable and should be run in batches rather than as one opaque job.
