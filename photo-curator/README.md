@@ -70,6 +70,27 @@ Useful options:
 npm run select-best -- --skip-scan true --minimum-score 80 --top 100 --batch 25
 ```
 
+## Curate infographic studies
+
+Place private source images in `data/infographics-inbox/`, then run the local
+vision review:
+
+```powershell
+npm run curate-infographics
+```
+
+The ranked review is written to `data/infographic-curation.json`, which remains
+local and git-ignored. After choosing the publishable studies, update the
+selection in `prepare-infographics.js` and create optimized WebP assets with:
+
+```powershell
+npm run prepare-infographics
+```
+
+Only the optimized files in `../public/media/infographics/` are intended for
+the public site. As with the photo curator, the review stays local and does not
+upload, move, or delete source files.
+
 ## Performance
 
 The local model remains loaded for 30 minutes between evaluations. HEIC decoding and the first model load are the slowest operations. A full 2,000-item library is intentionally resumable and should be run in batches rather than as one opaque job.

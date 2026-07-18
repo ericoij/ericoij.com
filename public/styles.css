@@ -183,6 +183,19 @@ footer a { text-decoration: none; }
 .selection-key span { padding: .7rem 1rem; border: 1px solid rgba(243,240,232,.3); border-radius: 999px; font: .7rem "DM Mono", monospace; text-transform: uppercase; }
 .selection-key b { margin-right: .45rem; color: var(--acid); }
 .collection-page footer { color: var(--paper); border-color: rgba(243,240,232,.25); }
+.infographic-hero > img { object-position: center 27%; }
+.infographic-page .wordmark span { color: var(--acid); }
+.infographic-page .collection-intro { padding-bottom: 90px; }
+.study-note { margin-top: 1.5rem; padding-left: 1.2rem; border-left: 2px solid var(--acid); font-size: .82rem; }
+.infographic-grid { width: min(1440px, calc(100% - 32px)); margin: 0 auto; columns: 2; column-gap: 16px; }
+.infographic-tile { display: block; break-inside: avoid; margin: 0 0 16px; color: inherit; text-decoration: none; background: #172f2a; border: 1px solid rgba(243,240,232,.16); }
+.infographic-tile figure { margin: 0; }
+.infographic-tile img { width: 100%; height: auto; display: block; transition: filter .35s ease, transform .55s ease; }
+.infographic-tile:hover img { filter: brightness(.82); }
+.infographic-tile figcaption { padding: 1.2rem 1.25rem 1.35rem; display: grid; grid-template-columns: 1fr auto; gap: .45rem 1rem; align-items: end; }
+.infographic-tile figcaption span { grid-column: 1 / -1; color: var(--acid); font: 500 .65rem "DM Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
+.infographic-tile figcaption strong { font-size: clamp(1.25rem, 2vw, 1.8rem); line-height: 1.05; }
+.infographic-tile figcaption small { color: #b7c1bd; font: .63rem "DM Mono", monospace; text-transform: uppercase; }
 .reveal { opacity: 1; transform: none; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .js .reveal.visible { opacity: 1; transform: none; }
@@ -221,6 +234,8 @@ footer a { text-decoration: none; }
   .collection-intro .section-number { margin-bottom: 2rem; }
   .photo-grid { grid-template-columns: 1fr; grid-auto-rows: minmax(400px, 125vw); }
   .photo-wide { grid-column: auto; }
+  .infographic-grid { width: calc(100% - 24px); columns: 1; }
+  .infographic-tile figcaption { grid-template-columns: 1fr; }
   .curation-note { padding: 100px 0; text-align: left; }
   .selection-key { justify-content: flex-start; }
   .photo-feature figcaption { left: 18px; right: 18px; bottom: 2rem; display: block; }
