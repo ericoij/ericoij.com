@@ -1,0 +1,82 @@
+name: Curate local photos
+
+on:
+  workflow_dispatch:
+    inputs:
+      scan_limit:
+        description: Source items to scan; use 0 for the complete library
+        required: true
+        default: 100
+        type: number
+      batch_size:
+        description: Images evaluated by Ollama per batch
+        required: true
+        default: 25
+        type: number
+      minimum_score:
+        description: Minimum share score for the shortlist
+        required: true
+        default: 80
+        type: number
+      shortlist_size:
+        description: Maximum shortlist size; use 0 for no limit
+        required: true
+        default: 100
+        type: number
+      years:
+        description: Only include media captured within this many years
+        required: true
+        default: 5
+        type: number
+
+permissions:
+  contents: read
+
+concurrency:
+  group: photo-curator-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  curate:
+    name: Scan and rank private photos
+    runs-on: [self-hosted, Windows, X64, photos]
+    timeout-minutes: 720
+    env:
+      PHOTO_CURATOR_SOURCE: ${{ vars.PHOTO_CURATOR_SOURCE }}
+      PHOTO_CURATOR_DATA: ${{ vars.PHOTO_CURATOR_DATA }}
+      PHOTO_CURATOR_MODEL: ${{ vars.PHOTO_CURATOR_MODEL || 'gemma3:4b' }}
+      SCAN_LIMIT: ${{ inputs.scan_limit }}
+      BATCH_SIZE: ${{ inputs.batch_size }}
+      MINIMUM_SCORE: ${{ inputs.minimum_score }}
+      SHORTLIST_SIZE: ${{ inputs.shortlist_size }}
+      PHOTO_YEARS: ${{ inputs.years }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: photo-curator/package-lock.json
+
+      - name: Install curator dependencies
+        working-directory: photo-curator
+        run: npm ci
+
+      - name: Scan and rank photos locally
+        shell: powershell
+        run: |
+          if (-not $env:PHOTO_CURATOR_SOURCE) { throw 'Set the PHOTO_CURATOR_SOURCE repository variable.' }
+          if (-not $env:PHOTO_CURATOR_DATA) { throw 'Set the PHOTO_CURATOR_DATA repository variable.' }
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\photo-curator\run-workflow.ps1 `
+            -Source $env:PHOTO_CURATOR_SOURCE `
+            -Data $env:PHOTO_CURATOR_DATA `
+            -ScanLimit ([int]$env:SCAN_LIMIT) `
+            -Batch ([int]$env:BATCH_SIZE) `
+            -MinimumScore ([double]$env:MINIMUM_SCORE) `
+            -Top ([int]$env:SHORTLIST_SIZE) `
+            -Years ([int]$env:PHOTO_YEARS) `
+            -Model $env:PHOTO_CURATOR_MODEL

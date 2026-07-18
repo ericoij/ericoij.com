@@ -5,7 +5,14 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export function parseOptions(argv) {
-  const options = { url: 'http://127.0.0.1:4317', batch: 25, minimumScore: 72, top: 0 };
+  const options = {
+    url: 'http://127.0.0.1:4317',
+    batch: 25,
+    minimumScore: 72,
+    top: 0,
+    scanLimit: 0,
+    output: path.join(__dirname, 'data', 'best-selection.json')
+  };
   for (let index = 0; index < argv.length; index++) {
     const argument = argv[index];
     if (!argument.startsWith('--')) continue;
@@ -15,12 +22,15 @@ export function parseOptions(argv) {
     else if (key === 'batch') options.batch = Number(value);
     else if (key === 'minimum-score') options.minimumScore = Number(value);
     else if (key === 'top') options.top = Number(value);
+    else if (key === 'scan-limit') options.scanLimit = Number(value);
+    else if (key === 'output') options.output = path.resolve(value);
     else if (key === 'skip-scan') options.skipScan = value !== 'false';
     else throw new Error(`Unknown option: --${key}`);
   }
   if (!Number.isInteger(options.batch) || options.batch < 1 || options.batch > 500) throw new Error('--batch must be an integer from 1 to 500');
   if (!Number.isFinite(options.minimumScore) || options.minimumScore < 0 || options.minimumScore > 100) throw new Error('--minimum-score must be from 0 to 100');
   if (!Number.isInteger(options.top) || options.top < 0) throw new Error('--top must be zero or a positive integer');
+  if (!Number.isInteger(options.scanLimit) || options.scanLimit < 0) throw new Error('--scan-limit must be zero or a positive integer');
   return options;
 }
 
@@ -72,9 +82,13 @@ async function main() {
   await api(options.url, '/api/status');
 
   if (!options.skipScan) {
-    console.log('Scanning the complete five-year library...');
+    console.log(options.scanLimit > 0
+      ? `Scanning the first ${options.scanLimit} items in the five-year library...`
+      : 'Scanning the complete five-year library...');
     await api(options.url, '/api/scan', {
-      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({})
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(options.scanLimit > 0 ? { limit: options.scanLimit } : {})
     });
     await waitForIdle(options.url);
   }
@@ -93,7 +107,7 @@ async function main() {
 
   const items = await api(options.url, '/api/items');
   const selection = rankSelection(items, options.minimumScore, options.top);
-  const output = path.join(__dirname, 'data', 'best-selection.json');
+  const output = options.output;
   await fs.mkdir(path.dirname(output), { recursive: true });
   await fs.writeFile(output, JSON.stringify({
     createdAt: new Date().toISOString(),

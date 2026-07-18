@@ -67,8 +67,29 @@ The script scans the full configured five-year library, resumes cached evaluatio
 Useful options:
 
 ```powershell
-npm run select-best -- --skip-scan true --minimum-score 80 --top 100 --batch 25
+npm run select-best -- --scan-limit 100 --minimum-score 80 --top 100 --batch 25
 ```
+
+Use `--scan-limit 0` for the complete library. Increase the limit across runs
+to add more photos while reusing cached thumbnails and AI reviews.
+
+## Run from GitHub Actions
+
+The **Curate local photos** workflow runs only on a self-hosted Windows runner
+with the custom `photos` label. This is intentional: the private originals and
+Ollama model remain on the local computer and are never copied to GitHub.
+
+Configure these repository variables before running the workflow:
+
+- `PHOTO_CURATOR_SOURCE`: the local photo directory available to the runner.
+- `PHOTO_CURATOR_DATA`: a persistent local directory for thumbnails, reviews,
+  logs, and `best-selection.json`.
+- `PHOTO_CURATOR_MODEL` (optional): defaults to `gemma3:4b`.
+
+The runner account must have read access to the source directory, write access
+to the data directory, Node.js 22, and Ollama running on `127.0.0.1:11434`.
+The workflow does not upload originals, thumbnails, review data, or the
+shortlist as artifacts.
 
 ## Curate infographic studies
 
