@@ -168,10 +168,9 @@ footer a { text-decoration: none; }
 .collection-hero-copy > p:last-child { max-width: 610px; color: rgba(255,255,255,.84); font-size: 1.05rem; line-height: 1.7; }
 .collection-intro { width: min(1280px, calc(100% - 64px)); margin: 0 auto; padding: 120px 0; display: grid; grid-template-columns: .65fr 1.35fr; }
 .collection-intro > div > p { max-width: 620px; color: #b7c1bd; line-height: 1.75; }
-.photo-grid { width: min(1440px, calc(100% - 32px)); margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(420px, 62vw); gap: 16px; }
+.photo-grid { width: min(1440px, calc(100% - 32px)); margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; align-items: start; gap: 16px; }
 .photo-tile { min-width: 0; margin: 0; position: relative; overflow: hidden; background: #1b332e; }
-.photo-tile img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .8s ease; }
-.photo-tile:hover img { transform: scale(1.025); }
+.photo-tile img { width: 100%; height: auto; display: block; }
 .photo-tile figcaption { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; gap: 1rem; padding: .7rem .8rem; color: white; background: rgba(8,26,23,.68); backdrop-filter: blur(8px); font: 500 .68rem "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
 .photo-tile figcaption span { color: var(--acid); }
 .photo-wide { grid-column: span 2; }
@@ -199,6 +198,10 @@ footer a { text-decoration: none; }
 .reveal { opacity: 1; transform: none; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .js .reveal.visible { opacity: 1; transform: none; }
+
+@media (min-width: 901px) {
+  .collection-page:not(.infographic-page) .collection-hero > img { object-fit: contain; }
+}
 
 @media (max-width: 900px) {
   .site-header, main, footer { width: min(100% - 36px, 1280px); }
@@ -235,7 +238,7 @@ footer a { text-decoration: none; }
   .infographic-page .collection-hero-copy > p:last-child { max-width: 305px; font-size: .86rem; line-height: 1.55; }
   .collection-intro { padding: 80px 0; display: block; }
   .collection-intro .section-number { margin-bottom: 2rem; }
-  .photo-grid { grid-template-columns: 1fr; grid-auto-rows: minmax(400px, 125vw); }
+  .photo-grid { grid-template-columns: 1fr; }
   .photo-wide { grid-column: auto; }
   .infographic-grid { width: calc(100% - 24px); columns: 1; }
   .infographic-tile figcaption { grid-template-columns: 1fr; }
