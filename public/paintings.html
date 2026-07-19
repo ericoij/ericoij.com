@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A selected collection of original paintings by Eric OIJ." />
+    <meta name="theme-color" content="#102723" />
+    <title>Paintings by Eric OIJ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;500&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="media/paintings/rough-water.webp" as="image" />
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body class="collection-page painting-page">
+    <a class="skip-link" href="#collection">Skip to the paintings</a>
+    <header class="site-header">
+      <a class="wordmark" href="index.html">ERIC OIJ<span> / PAINTINGS</span></a>
+      <nav aria-label="Painting navigation">
+        <a href="photography.html">Photography</a>
+        <a class="nav-cta" href="index.html">Back to studio <span aria-hidden="true">↙</span></a>
+      </nav>
+    </header>
+
+    <main id="collection">
+      <section class="collection-hero" aria-labelledby="collection-title">
+        <img src="media/paintings/rough-water.webp" alt="A painted sailing ship leaning into blue waves" />
+        <div class="collection-hero-shade"></div>
+        <div class="collection-hero-copy">
+          <p class="eyebrow">08 selected works / A personal collection</p>
+          <h1 id="collection-title">Color in<br /><em>rough water.</em></h1>
+          <p>Paintings built from instinct, texture, patience, and the occasional beautiful accident.</p>
+        </div>
+      </section>
+
+      <section class="collection-intro reveal" aria-labelledby="painting-intro-title">
+        <p class="section-number">01 / THE COLLECTION</p>
+        <div>
+          <h2 id="painting-intro-title">Weather, symbols,<br /><em>and inner worlds.</em></h2>
+          <p>Ships, storms, cities, and the mind itself—a selection of original works drawn together by saturated color and an appetite for motion.</p>
+        </div>
+      </section>
+
+      <section class="painting-grid" aria-label="Selected paintings">
+        <figure class="painting-tile reveal"><img src="media/paintings/blue-vortex.webp" alt="Blue abstract vortex painting with green circular motion and red fragments" loading="lazy" /><figcaption><span>01</span> Blue Vortex</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/city-and-park.webp" alt="City skyline beyond a green park beneath a deep blue sky" loading="lazy" /><figcaption><span>02</span> City and Park</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/eruption.webp" alt="Volcano erupting in red and orange above a textured gray slope" loading="lazy" /><figcaption><span>03</span> Eruption</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/red-buoy.webp" alt="Red buoy floating on green-blue water beneath a gray cloud" loading="lazy" /><figcaption><span>04</span> Red Buoy</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/red-marker.webp" alt="Geometric red navigation marker against a gray-blue sky" loading="lazy" /><figcaption><span>05</span> Red Marker</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/rough-water.webp" alt="Wooden sailing ship moving through rough blue water" loading="lazy" /><figcaption><span>06</span> Rough Water</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/storm-cloud.webp" alt="Gray storm cloud and yellow lightning against a dark sky" loading="lazy" /><figcaption><span>07</span> Storm Cloud</figcaption></figure>
+        <figure class="painting-tile reveal"><img src="media/paintings/the-brain.webp" alt="Pink brain surrounded by expressive yellow marks" loading="lazy" /><figcaption><span>08</span> The Brain</figcaption></figure>
+      </section>
+
+      <section class="curation-note reveal" aria-labelledby="edit-title">
+        <p class="section-number">02 / THE EDIT</p>
+        <h2 id="edit-title">The archive was large.<br /><em>The final choice stayed human.</em></h2>
+        <p>A private local curator searched thousands of images for photographed paintings. Repeated views and studio snapshots were set aside so each work here can hold the frame on its own.</p>
+        <div class="selection-key" aria-label="Curation criteria"><span><b>01</b> Original work</span><span><b>02</b> Full view</span><span><b>03</b> Strong image</span><span><b>04</b> One clear frame</span></div>
+      </section>
+    </main>
+
+    <footer><p>© <span id="year"></span> Eric OIJ</p><p>Paintings / Selected works</p><a href="#collection">Back to top ↑</a></footer>
+  </body>
+</html>

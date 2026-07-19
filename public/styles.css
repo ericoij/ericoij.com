@@ -118,10 +118,10 @@ h2 { font-size: clamp(2.9rem, 5.2vw, 5rem); line-height: .98; letter-spacing: -.
 .preview-small { width: 37%; height: 47%; right: 8%; top: 4%; background: radial-gradient(circle at 38% 42%, var(--acid) 0 18%, transparent 19%), var(--blue); transform: rotate(4deg); }
 .preview-wide { width: 58%; height: 42%; right: 1%; bottom: 3%; color: white; background: linear-gradient(12deg, #1b4c42 0 45%, #a9c7bf 46%); transform: rotate(2deg); }
 .painting-preview { height: 500px; position: relative; background: #ded8ca; }
-.canvas { position: absolute; box-shadow: 0 14px 30px rgba(16,39,35,.18); }
-.canvas-a { width: 48%; height: 72%; left: 5%; top: 9%; background: radial-gradient(ellipse at 40% 35%, #f6c350 0 21%, transparent 22%), linear-gradient(140deg, #ec7754 0 47%, #214a80 48%); transform: rotate(-5deg); }
-.canvas-b { width: 45%; height: 53%; right: 5%; top: 4%; background: radial-gradient(circle at 70% 32%, #d9f253 0 13%, transparent 14%), linear-gradient(35deg, #18342f 0 55%, #f1a37f 56%); transform: rotate(5deg); }
-.canvas-c { width: 51%; height: 38%; right: 8%; bottom: 4%; background: linear-gradient(155deg, #83b4ff 0 30%, #f4ecdb 31% 54%, #ed5b49 55%); transform: rotate(-2deg); }
+.canvas { position: absolute; object-fit: cover; border: 7px solid var(--cream); box-shadow: 0 14px 30px rgba(16,39,35,.18); }
+.canvas-a { width: 48%; height: 72%; left: 5%; top: 9%; transform: rotate(-5deg); }
+.canvas-b { width: 45%; height: 53%; right: 5%; top: 4%; transform: rotate(5deg); }
+.canvas-c { width: 51%; height: 38%; right: 8%; bottom: 4%; transform: rotate(-2deg); }
 .process-graphic { min-height: 380px; padding: 2rem; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: .7rem; color: var(--paper); background: var(--dark); }
 .process-step { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; border: 1px solid rgba(243,240,232,.35); border-radius: 50%; text-align: center; }
 .process-step span { color: var(--acid); font: .65rem "DM Mono"; }
@@ -195,6 +195,14 @@ footer a { text-decoration: none; }
 .infographic-tile figcaption span { grid-column: 1 / -1; color: var(--acid); font: 500 .65rem "DM Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
 .infographic-tile figcaption strong { font-size: clamp(1.25rem, 2vw, 1.8rem); line-height: 1.05; }
 .infographic-tile figcaption small { color: #b7c1bd; font: .63rem "DM Mono", monospace; text-transform: uppercase; }
+.painting-page .wordmark span { color: var(--acid); }
+.painting-page .collection-hero > img { object-position: center; }
+.painting-grid { width: min(1440px, calc(100% - 32px)); margin: 0 auto; columns: 2; column-gap: 16px; }
+.painting-tile { break-inside: avoid; margin: 0 0 16px; position: relative; overflow: hidden; background: #172f2a; }
+.painting-tile img { width: 100%; height: auto; display: block; transition: filter .35s ease, transform .55s ease; }
+.painting-tile:hover img { filter: brightness(.82); transform: scale(1.012); }
+.painting-tile figcaption { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; gap: 1rem; padding: .75rem .85rem; color: white; background: rgba(8,26,23,.72); backdrop-filter: blur(8px); font: 500 .68rem "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.painting-tile figcaption span { color: var(--acid); }
 .reveal { opacity: 1; transform: none; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .js .reveal.visible { opacity: 1; transform: none; }
@@ -241,6 +249,7 @@ footer a { text-decoration: none; }
   .photo-grid { grid-template-columns: 1fr; }
   .photo-wide { grid-column: auto; }
   .infographic-grid { width: calc(100% - 24px); columns: 1; }
+  .painting-grid { width: calc(100% - 24px); columns: 1; }
   .infographic-tile figcaption { grid-template-columns: 1fr; }
   .curation-note { padding: 100px 0; text-align: left; }
   .selection-key { justify-content: flex-start; }
