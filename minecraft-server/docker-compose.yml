@@ -19,12 +19,12 @@ services:
       MODE: "${MINECRAFT_GAMEMODE:-survival}"
       ONLINE_MODE: "${MINECRAFT_ONLINE_MODE:-TRUE}"
       ENABLE_RCON: "${ENABLE_RCON:-TRUE}"
-      RCON_PASSWORD: "${RCON_PASSWORD:-change-me-before-deploy}"
+      RCON_PASSWORD: "${RCON_PASSWORD:-eric}"
       RCON_PORT: "25575"
       MODRINTH_PROJECTS: |
         chunky
-        geyser
-        floodgate
+        geyser:beta
+        floodgate:beta
     volumes:
       - minecraft-data:/data
 
