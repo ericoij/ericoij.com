@@ -3,14 +3,16 @@ import { test } from 'node:test';
 import { parseOptions, rankSelection } from '../select-best.js';
 
 test('parseOptions validates shortlist and scan settings', () => {
-  const options = parseOptions(['--batch', '10', '--minimum-score=80', '--top', '25', '--scan-limit', '100', '--output', 'custom-selection.json']);
+  const options = parseOptions(['--batch', '10', '--minimum-score=80', '--top', '25', '--scan-limit', '100', '--review-limit', '50', '--output', 'custom-selection.json']);
   assert.equal(options.batch, 10);
   assert.equal(options.minimumScore, 80);
   assert.equal(options.top, 25);
   assert.equal(options.scanLimit, 100);
+  assert.equal(options.reviewLimit, 50);
   assert.match(options.output, /custom-selection\.json$/);
   assert.throws(() => parseOptions(['--batch', '0']), /batch/);
   assert.throws(() => parseOptions(['--scan-limit', '-1']), /scan-limit/);
+  assert.throws(() => parseOptions(['--review-limit', '-1']), /review-limit/);
 });
 
 test('rankSelection excludes duplicates, high-risk items, and weak scores', () => {

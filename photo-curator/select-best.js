@@ -11,6 +11,7 @@ export function parseOptions(argv) {
     minimumScore: 72,
     top: 0,
     scanLimit: 0,
+    reviewLimit: 0,
     output: path.join(__dirname, 'data', 'best-selection.json')
   };
   for (let index = 0; index < argv.length; index++) {
@@ -23,6 +24,7 @@ export function parseOptions(argv) {
     else if (key === 'minimum-score') options.minimumScore = Number(value);
     else if (key === 'top') options.top = Number(value);
     else if (key === 'scan-limit') options.scanLimit = Number(value);
+    else if (key === 'review-limit') options.reviewLimit = Number(value);
     else if (key === 'output') options.output = path.resolve(value);
     else if (key === 'skip-scan') options.skipScan = value !== 'false';
     else throw new Error(`Unknown option: --${key}`);
@@ -31,6 +33,7 @@ export function parseOptions(argv) {
   if (!Number.isFinite(options.minimumScore) || options.minimumScore < 0 || options.minimumScore > 100) throw new Error('--minimum-score must be from 0 to 100');
   if (!Number.isInteger(options.top) || options.top < 0) throw new Error('--top must be zero or a positive integer');
   if (!Number.isInteger(options.scanLimit) || options.scanLimit < 0) throw new Error('--scan-limit must be zero or a positive integer');
+  if (!Number.isInteger(options.reviewLimit) || options.reviewLimit < 0) throw new Error('--review-limit must be zero or a positive integer');
   return options;
 }
 
@@ -93,16 +96,23 @@ async function main() {
     await waitForIdle(options.url);
   }
 
+  await waitForIdle(options.url);
+  let reviewedThisRun = 0;
   while (true) {
     const items = await api(options.url, '/api/items');
     const remaining = items.filter((item) => !item.duplicateOf && !item.analysis).length;
     if (remaining === 0) break;
-    const batch = Math.min(options.batch, remaining);
+    if (options.reviewLimit > 0 && reviewedThisRun >= options.reviewLimit) break;
+    const available = options.reviewLimit > 0
+      ? options.reviewLimit - reviewedThisRun
+      : remaining;
+    const batch = Math.min(options.batch, remaining, available);
     console.log(`Evaluating ${batch} photos (${remaining} remaining)...`);
     await api(options.url, '/api/curate', {
       method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ limit: batch })
     });
     await waitForIdle(options.url);
+    reviewedThisRun += batch;
   }
 
   const items = await api(options.url, '/api/items');
