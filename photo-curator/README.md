@@ -73,6 +73,27 @@ npm run select-best -- --scan-limit 100 --minimum-score 80 --top 100 --batch 25
 Use `--scan-limit 0` for the complete library. Increase the limit across runs
 to add more photos while reusing cached thumbnails and AI reviews.
 
+For a quick finalist run, review only the strongest unevaluated candidates and
+save a short list:
+
+```powershell
+npm run select-best -- --skip-scan=true --review-limit 50 --top 4 --minimum-score 0
+```
+
+## Build the local photo database
+
+Create or refresh a private SQLite catalog from the scan and AI caches:
+
+```powershell
+npm run build-database
+```
+
+The git-ignored `data/photo-library.sqlite` database contains source paths,
+capture dates, technical and AI scores, privacy flags, decisions, duplicate
+links, and normalized tags. It also includes a full-text `photo_search` index
+for searching filenames, titles, reasons, and tags. Re-running the command
+updates the catalog without moving or modifying any original media.
+
 ## Run from GitHub Actions
 
 The **Curate local photos** workflow runs only on a self-hosted Windows runner

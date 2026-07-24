@@ -10,6 +10,7 @@
     "curate-infographics": "node curate-infographics.js",
     "prepare-infographics": "node prepare-infographics.js",
     "select-best": "node select-best.js",
+    "build-database": "node photo-database.js",
     "upload-paintings": "node upload-paintings.js",
     "upload-infographics": "node upload-infographics.js",
     "test": "node --test test/*.test.js"

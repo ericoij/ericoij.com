@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildPhotoDatabase } from './photo-database.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,6 +26,7 @@ export function parseOptions(argv) {
     else if (key === 'top') options.top = Number(value);
     else if (key === 'scan-limit') options.scanLimit = Number(value);
     else if (key === 'review-limit') options.reviewLimit = Number(value);
+    else if (key === 'database') options.database = path.resolve(value);
     else if (key === 'output') options.output = path.resolve(value);
     else if (key === 'skip-scan') options.skipScan = value !== 'false';
     else throw new Error(`Unknown option: --${key}`);
@@ -128,6 +130,13 @@ async function main() {
   }, null, 2));
   console.log(`Selected ${selection.length} of ${items.length} items.`);
   console.log(`Shortlist saved to ${output}`);
+  if (options.database) {
+    const database = await buildPhotoDatabase({
+      dataDirectory: path.dirname(options.output),
+      databasePath: options.database
+    });
+    console.log(`Photo database refreshed with ${database.photos} items at ${database.databasePath}`);
+  }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
