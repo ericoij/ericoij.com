@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A live, corrected view of 500 hPa winds measured by NOAA weather balloons across the United States." />
+    <meta name="theme-color" content="#102723" />
+    <title>Upper-Air Lab — Eric OIJ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="weather-model.css" />
+    <script src="weather-model.js" defer></script>
+  </head>
+  <body class="weather-page">
+    <a class="skip-link" href="#main">Skip to the wind map</a>
+    <header class="site-header">
+      <a class="wordmark" href="index.html" aria-label="Eric OIJ, home">ERIC OIJ<span> / UPPER-AIR LAB</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="index.html">Studio</a><a href="#method">Method</a><a href="#stations">Stations</a>
+        <a class="nav-cta" href="index.html#connect">Say hello <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="weather-hero" aria-labelledby="weather-title">
+        <div>
+          <p class="eyebrow"><span class="status-dot" id="data-dot"></span><span id="data-status">Loading the latest balloon launches</span></p>
+          <h1 id="weather-title">The wind,<br /><em>five kilometers up.</em></h1>
+          <p class="weather-intro">A living reconstruction of the 500 hPa wind field over the United States, built from NOAA radiosondes and corrected for the unit and time-step errors in my original graduate model.</p>
+        </div>
+        <div class="weather-snapshot" aria-label="Latest model summary">
+          <div class="snapshot-cell"><span>Mean wind</span><strong id="mean-wind">—</strong><small>mph</small></div>
+          <div class="snapshot-cell"><span>Strongest</span><strong id="max-wind">—</strong><small>mph</small></div>
+          <div class="snapshot-cell snapshot-wide"><span>Latest sounding</span><strong id="observation-time">—</strong><small id="station-count">Across — stations</small></div>
+        </div>
+      </section>
+
+      <section class="wind-stage" aria-labelledby="map-title">
+        <div class="wind-stage-heading">
+          <div><p class="section-number">01 / LIVE FIELD</p><h2 id="map-title">500 hPa winds,<br /><em>in motion.</em></h2></div>
+          <div class="wind-key" aria-label="Wind speed legend">
+            <span><i class="key-calm"></i> 0–15 m/s</span><span><i class="key-brisk"></i> 15–30 m/s</span><span><i class="key-fast"></i> 30+ m/s</span>
+          </div>
+        </div>
+        <div class="wind-canvas-frame">
+          <canvas id="wind-map" role="img" aria-label="Animated map of interpolated 500 hPa wind vectors across the contiguous United States"></canvas>
+          <div class="map-readout"><span>Interpolated from radiosondes</span><span>Pressure altitude ≈ 5.5 km / 18,000 ft</span></div>
+        </div>
+        <p class="map-note">Particle motion is illustrative; station arrows and reported speeds come directly from the latest valid NOAA 500 hPa observations.</p>
+      </section>
+
+      <section class="method-section section-rule" id="method" aria-labelledby="method-title">
+        <div class="method-heading"><p class="section-number">02 / THE CORRECTION</p><h2 id="method-title">Why the first model<br /><em>made impossible wind.</em></h2></div>
+        <div class="correction-grid">
+          <article><span class="correction-number">01</span><p class="formula wrong">raw × 0.514444</p><h3>The input was scaled twice.</h3><p>IGRA already stores wind in tenths of meters per second. Treating that integer as knots made the starting field about 5.14× too fast.</p></article>
+          <article><span class="correction-number">02</span><p class="formula wrong">u × du/dt × Δt</p><h3>The update multiplied state.</h3><p>Wind was multiplied by its tendency on every step, turning normal upper-air flow into values measured in millions of meters per second.</p></article>
+          <article class="correction-good"><span class="correction-number">03</span><p class="formula">u + du/dt × Δt</p><h3>The corrected relationship.</h3><p>This page uses properly scaled observations. Future forecast evolution will use an additive, stability-limited time step.</p></article>
+        </div>
+      </section>
+
+      <section class="station-section section-rule" id="stations" aria-labelledby="stations-title">
+        <div class="station-heading">
+          <div><p class="section-number">03 / SOUNDING NETWORK</p><h2 id="stations-title">What the balloons<br /><em>actually measured.</em></h2></div>
+          <p>Twice a day, weather balloons climb through the atmosphere carrying instruments that report pressure, temperature, humidity, wind direction, and wind speed.</p>
+        </div>
+        <div class="station-table-wrap"><table>
+          <thead><tr><th>Station</th><th>Observed</th><th>Direction</th><th>Wind</th><th>Temperature</th><th>Height</th></tr></thead>
+          <tbody id="station-rows"><tr><td colspan="6">Loading NOAA observations…</td></tr></tbody>
+        </table></div>
+      </section>
+
+      <section class="source-section section-rule">
+        <p class="section-number">04 / SOURCE + CADENCE</p>
+        <div><h2>Measured in the sky.<br /><em>Updated automatically.</em></h2>
+          <p>The updater runs after both standard global sounding cycles and publishes the newest valid 500 hPa observation for each station. NOAA notes that final archive availability can trail launch time.</p>
+          <a href="https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive" target="_blank" rel="noreferrer">Open the NOAA IGRA archive <span aria-hidden="true">↗</span></a>
+          <p class="generated-label">Page data generated <span id="generated-time">—</span></p>
+        </div>
+      </section>
+    </main>
+    <footer><p>© <span id="year"></span> Eric OIJ</p><p>Weather / Code / Numerical curiosity</p><a href="#main">Back to top ↑</a></footer>
+  </body>
+</html>

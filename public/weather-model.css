@@ -1,0 +1,31 @@
+:root { --weather-blue:#87b6ff; --weather-cyan:#7be4d5; --weather-yellow:#d9f253; --weather-coral:#ef7654; }
+.weather-page { color:var(--paper); background:var(--dark); }
+.weather-page .site-header { color:var(--paper); border-color:rgba(243,240,232,.24); }
+.weather-page .wordmark span { color:var(--weather-yellow); }
+.weather-page .nav-cta { border-color:rgba(243,240,232,.7); }
+.weather-page main { width:100%; }
+.weather-hero { width:min(1280px,calc(100% - 64px)); min-height:760px; margin:0 auto; padding:120px 0 70px; display:grid; grid-template-columns:1.25fr .75fr; align-items:end; gap:5rem; }
+.weather-hero .eyebrow { color:#b7c1bd; }
+.weather-hero h1 { max-width:900px; }
+.weather-hero h1 em { color:var(--weather-cyan); }
+.weather-intro { max-width:700px; color:#b7c1bd; font-size:1.08rem; line-height:1.8; }
+.weather-snapshot { display:grid; grid-template-columns:1fr 1fr; border:1px solid rgba(243,240,232,.24); }
+.snapshot-cell { min-height:160px; padding:1.3rem; display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid rgba(243,240,232,.24); }
+.snapshot-cell:nth-child(2){border-right:0}.snapshot-cell span,.snapshot-cell small{color:#aebbb6;font:500 .62rem "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.snapshot-cell strong{font-size:clamp(2.2rem,4vw,4rem);line-height:1;letter-spacing:-.06em}.snapshot-cell small{margin-top:.35rem}
+.snapshot-wide{min-height:130px;grid-column:1/-1;border-top:1px solid rgba(243,240,232,.24);border-right:0}.snapshot-wide strong{font:500 1.05rem "DM Mono",monospace;letter-spacing:0}
+.wind-stage{padding:110px max(32px,calc((100vw - 1440px)/2));color:var(--ink);background:var(--paper)}
+.wind-stage-heading{margin-bottom:3.5rem;display:flex;align-items:end;justify-content:space-between;gap:3rem}.wind-stage-heading h2{margin-bottom:0}.wind-stage-heading .section-number{margin-bottom:2rem}
+.wind-key{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:1rem;color:var(--muted);font:500 .62rem "DM Mono",monospace;text-transform:uppercase}.wind-key span{display:flex;align-items:center;gap:.45rem}.wind-key i{width:9px;height:9px;border-radius:50%}.key-calm{background:#4a8fb1}.key-brisk{background:#36a879}.key-fast{background:#e46743}
+.wind-canvas-frame{min-height:620px;position:relative;overflow:hidden;border:1px solid var(--ink);background:#102723}#wind-map{width:100%;height:620px;display:block}
+.map-readout{position:absolute;inset:auto 1.2rem 1.2rem;display:flex;justify-content:space-between;gap:1rem;color:rgba(243,240,232,.72);font:500 .62rem "DM Mono",monospace;text-transform:uppercase;pointer-events:none}.map-note{max-width:800px;margin:1rem 0 0;color:var(--muted);font-size:.78rem;line-height:1.6}
+.weather-page .section-rule{width:min(1280px,calc(100% - 64px));margin:0 auto;border-color:rgba(243,240,232,.24)}.weather-page .section-number{color:#8fa19a}
+.method-heading{display:grid;grid-template-columns:.55fr 1.45fr;align-items:start;margin-bottom:5rem}.method-heading h2{margin:0}
+.correction-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(243,240,232,.24)}.correction-grid article{min-height:430px;padding:1.8rem;display:flex;flex-direction:column;border-right:1px solid rgba(243,240,232,.24)}.correction-grid article:last-child{border-right:0}
+.correction-number{color:var(--weather-coral);font:500 .65rem "DM Mono",monospace}.formula{margin:auto 0 2rem;color:var(--weather-yellow);font:500 clamp(1.3rem,2vw,2rem) "DM Mono",monospace;letter-spacing:-.05em}.formula.wrong{color:#c7a8a0;text-decoration:line-through;text-decoration-color:var(--weather-coral)}
+.correction-grid h3{margin-bottom:1rem;font-size:1.35rem}.correction-grid p:last-child{color:#aebbb6;line-height:1.7}.correction-good{color:var(--ink);background:var(--weather-yellow)}.correction-good .correction-number,.correction-good .formula,.correction-good p:last-child{color:var(--ink)}
+.station-heading{margin-bottom:4rem;display:grid;grid-template-columns:1.2fr .8fr;align-items:end;gap:5rem}.station-heading .section-number{margin-bottom:2rem}.station-heading h2{margin:0}.station-heading>p{color:#aebbb6;line-height:1.8}
+.station-table-wrap{overflow-x:auto;border-top:1px solid rgba(243,240,232,.3)}table{width:100%;border-collapse:collapse}th,td{padding:1rem .8rem;text-align:left;border-bottom:1px solid rgba(243,240,232,.16);white-space:nowrap}th{color:#8fa19a;font:500 .61rem "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}td{color:#d2d9d6;font:.78rem "DM Mono",monospace}td:first-child{color:var(--paper);font-family:"Manrope",sans-serif;font-weight:700}.wind-value{color:var(--weather-yellow)}.direction-arrow{display:inline-block;margin-right:.55rem;color:var(--weather-cyan);font-size:1rem}
+.source-section{display:grid;grid-template-columns:.55fr 1.45fr}.source-section h2{margin-bottom:2rem}.source-section p{max-width:700px;color:#aebbb6;line-height:1.8}.source-section a{display:inline-flex;gap:.7rem;padding:.8rem 1rem;border:1px solid var(--weather-yellow);border-radius:999px;color:var(--weather-yellow);text-decoration:none;font-size:.8rem;font-weight:700}.generated-label{margin-top:1.5rem;font:.62rem "DM Mono",monospace;text-transform:uppercase}.weather-page footer{color:var(--paper);border-color:rgba(243,240,232,.24)}
+.status-dot.is-live{background:var(--weather-yellow);box-shadow:0 0 0 5px rgba(217,242,83,.13)}
+@media(max-width:900px){.weather-hero{width:calc(100% - 36px);min-height:0;padding:100px 0 65px;grid-template-columns:1fr;gap:3rem}.wind-stage{padding:80px 18px}.wind-stage-heading,.station-heading{display:block}.wind-key{margin-top:2rem;justify-content:flex-start}.wind-canvas-frame{min-height:500px}#wind-map{height:500px}.map-readout{display:none}.weather-page .section-rule{width:calc(100% - 36px)}.method-heading,.source-section{display:block}.method-heading .section-number,.source-section .section-number{margin-bottom:2rem}.correction-grid{grid-template-columns:1fr}.correction-grid article{min-height:330px;border-right:0;border-bottom:1px solid rgba(243,240,232,.24)}.correction-grid article:last-child{border-bottom:0}.station-heading>p{margin-top:2rem}}

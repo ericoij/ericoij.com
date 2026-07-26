@@ -8,12 +8,14 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "weather:update": "node scripts/update-weather-model.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "adm-zip": "^0.5.16",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "nedb-promises": "^6.2.3"
