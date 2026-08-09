@@ -1,4 +1,4 @@
-﻿const path = require('path');
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const Datastore = require('nedb-promises');
@@ -13,15 +13,10 @@ fs.mkdirSync(DATA_DIR, { recursive: true });
 
 const sliderDefinitions = [
   { id: 'mood', label: 'Overall Mood', min: 0, max: 10 },
-  { id: 'anxiety', label: 'Anxiety', min: 0, max: 10 },
-  { id: 'stress', label: 'Stress', min: 0, max: 10 },
-  { id: 'motivation', label: 'Motivation', min: 0, max: 10 },
-  { id: 'sleep', label: 'Sleep Quality', min: 0, max: 10 },
   { id: 'energy', label: 'Energy Level', min: 0, max: 10 },
+  { id: 'calm', label: 'Calm', min: 0, max: 10 },
   { id: 'focus', label: 'Focus', min: 0, max: 10 },
-  { id: 'selfCare', label: 'Self-Care', min: 0, max: 10 },
-  { id: 'connections', label: 'Social Connection', min: 0, max: 10 },
-  { id: 'outlook', label: 'Optimism', min: 0, max: 10 }
+  { id: 'sleep', label: 'Sleep Quality', min: 0, max: 10 }
 ];
 
 const db = Datastore.create({
@@ -47,12 +42,12 @@ const parseSliders = (sliders = {}) => {
     const value = Number(rawValue);
 
     if (!Number.isFinite(value)) {
-      throw new ValidationError(`Missing value for ${definition.label}`);
+      throw new ValidationError('Missing value for ' + definition.label);
     }
 
     if (value < definition.min || value > definition.max) {
       throw new ValidationError(
-        `${definition.label} must be between ${definition.min} and ${definition.max}`
+        definition.label + ' must be between ' + definition.min + ' and ' + definition.max
       );
     }
 
@@ -132,15 +127,15 @@ const app = createApp();
 
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`Server listening on http://localhost:${PORT}`);
+    console.log('Server listening on http://localhost:' + PORT);
   });
 }
 
 module.exports = {
-  ValidationError,
-  app,
-  createApp,
-  parseSliders,
-  sanitizeEntry,
-  sliderDefinitions
+  ValidationError: ValidationError,
+  app: app,
+  createApp: createApp,
+  parseSliders: parseSliders,
+  sanitizeEntry: sanitizeEntry,
+  sliderDefinitions: sliderDefinitions
 };
