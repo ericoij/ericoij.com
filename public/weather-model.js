@@ -22,10 +22,13 @@ const formatObservation = (value) =>
     timeZoneName: "short",
   }).format(new Date(value));
 
+const formatNumber = (value, digits = 1, fallback = "—") =>
+  Number.isFinite(value) ? value.toFixed(digits) : fallback;
+
 function renderTable(stations) {
   $("#station-rows").innerHTML = stations
     .slice()
-    .sort((a, b) => b.windSpeedMph - a.windSpeedMph)
+    .sort((a, b) => (b.windSpeedMph ?? -Infinity) - (a.windSpeedMph ?? -Infinity))
     .map(
       (station) => `
         <tr>
@@ -33,10 +36,11 @@ function renderTable(stations) {
             <strong>${station.name}</strong>
             <span>${station.id}</span>
           </td>
-          <td>${station.windSpeedMph.toFixed(1)} mph</td>
-          <td>${Math.round(station.windDirectionDeg)}°</td>
-          <td>${station.temperatureC.toFixed(1)} °C</td>
-          <td>${station.relativeHumidityPct.toFixed(1)}%</td>
+          <td>${station.observedAt ? formatObservation(station.observedAt) : "—"}</td>
+          <td>${Number.isFinite(station.windDirectionDeg) ? `${Math.round(station.windDirectionDeg)}°` : "—"}</td>
+          <td>${Number.isFinite(station.windSpeedMph) ? `${station.windSpeedMph.toFixed(1)} mph` : "—"}</td>
+          <td>${Number.isFinite(station.temperatureC) ? `${station.temperatureC.toFixed(1)} °C` : "—"}</td>
+          <td>${Number.isFinite(station.geopotentialHeightM) ? `${Math.round(station.geopotentialHeightM).toLocaleString()} m` : "—"}</td>
         </tr>`,
     )
     .join("");
@@ -184,17 +188,20 @@ async function loadWeatherModel() {
 
     $("#data-status").textContent = "Latest NOAA sounding";
     $("#data-dot").classList.add("live");
-    $("#mean-wind").textContent = `${data.summary.averageWindSpeedMph.toFixed(1)} mph`;
-    $("#max-wind").textContent = `${data.summary.strongestWindSpeedMph.toFixed(1)} mph`;
+    $("#mean-wind").textContent = `${formatNumber(data.summary.averageWindSpeedMph)} mph`;
+    $("#max-wind").textContent = `${formatNumber(data.summary.strongestWindSpeedMph)} mph`;
     $("#observation-time").textContent = formatObservation(data.observationTime);
-    $("#station-count").textContent = data.stations.length;
+    $("#station-count").textContent = `Across ${data.stations.length} stations`;
     $("#generated-time").textContent = formatDate(data.generatedAt);
-    renderTable(data.stations);
+
+    // Render the map before secondary UI so a malformed table value can never
+    // prevent the primary visualization from appearing.
     buildMap(data);
+    renderTable(data.stations);
   } catch (error) {
     $("#data-status").textContent = "Data temporarily unavailable";
     $("#station-rows").innerHTML =
-      '<tr><td colspan="5">The latest observation could not be loaded. Please check back shortly.</td></tr>';
+      '<tr><td colspan="6">The latest observation could not be loaded. Please check back shortly.</td></tr>';
     console.error(error);
   }
 }
