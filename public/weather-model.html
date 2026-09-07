@@ -39,16 +39,16 @@
 
       <section class="wind-stage" aria-labelledby="map-title">
         <div class="wind-stage-heading">
-          <div><p class="section-number">01 / LIVE FIELD</p><h2 id="map-title">500 hPa winds,<br /><em>in motion.</em></h2></div>
-          <div class="wind-key" aria-label="Wind speed legend">
-            <span><i class="key-calm"></i> 0–15 m/s</span><span><i class="key-brisk"></i> 15–30 m/s</span><span><i class="key-fast"></i> 30+ m/s</span>
+          <div><p class="section-number">01 / 500 HPA ANALYSIS</p><h2 id="map-title">500 hPa analysis,<br /><em>from downloaded soundings.</em></h2></div>
+          <div class="wind-key" aria-label="Map legend">
+            <span><i class="key-height-field"></i> Height analysis</span><span><i class="key-height-contour"></i> 60 m contours</span><span><i class="key-wind-vector"></i> Observed wind</span>
           </div>
         </div>
         <div class="wind-canvas-frame">
-          <canvas id="wind-map" role="img" aria-label="Animated map of interpolated 500 hPa wind vectors across the contiguous United States"></canvas>
-          <div class="map-readout"><span>Interpolated from radiosondes</span><span>Pressure altitude ≈ 5.5 km / 18,000 ft</span></div>
+          <canvas id="wind-map" role="img" aria-label="Map of interpolated 500 hPa geopotential heights and observed wind vectors across the contiguous United States"></canvas>
+          <div class="map-readout"><span>NOAA IGRA observations · IDW height analysis</span><span>Yellow = height contours · Coral = observed wind</span></div>
         </div>
-        <p class="map-note">Particle motion is illustrative; station arrows and reported speeds come directly from the latest valid NOAA 500 hPa observations.</p>
+        <p class="map-note">Blue shading and yellow contours are interpolated directly from the downloaded 500 hPa geopotential heights. Coral arrows are the observed station winds. This is an observational analysis, not a forecast.</p>
       </section>
 
       <section class="method-section section-rule" id="method" aria-labelledby="method-title">
