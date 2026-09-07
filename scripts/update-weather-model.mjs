@@ -105,7 +105,7 @@ export async function updateWeatherModel() {
     generatedAt: new Date().toISOString(),
     observationTime: stations.reduce((latest, station) => station.observedAt > latest ? station.observedAt : latest, stations[0].observedAt),
     pressureLevelHpa: 500,
-    region: { north: 50, south: 30, west: -120, east: -80 },
+    region: { north: 50, south: 24, west: -125, east: -66.5 },
     source: {
       name: "NOAA NCEI Integrated Global Radiosonde Archive v2.2",
       url: "https://www.ncei.noaa.gov/products/weather-balloon/integrated-global-radiosonde-archive",
