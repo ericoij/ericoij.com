@@ -8,8 +8,11 @@ const scanButton = document.getElementById('scanButton');
 const curateButton = document.getElementById('curateButton');
 const scanLimit = document.getElementById('scanLimit');
 const curateLimit = document.getElementById('curateLimit');
+const searchInput = document.getElementById('searchInput');
 const grid = document.getElementById('grid');
 const emptyState = document.getElementById('emptyState');
+const emptyTitle = document.getElementById('emptyTitle');
+const emptyMessage = document.getElementById('emptyMessage');
 const itemCount = document.getElementById('itemCount');
 const template = document.getElementById('cardTemplate');
 let activeFilter = 'all';
@@ -22,10 +25,40 @@ async function api(url, options) {
   return body;
 }
 
+function searchableText(item) {
+  const analysis = item.analysis || {};
+  let capturedYear = '';
+  if (item.capturedAt) {
+    const date = new Date(item.capturedAt);
+    if (!Number.isNaN(date.valueOf())) capturedYear = String(date.getFullYear());
+  }
+  return [
+    item.relativePath,
+    item.type,
+    item.capturedAt,
+    capturedYear,
+    item.decision,
+    analysis.title,
+    analysis.reason,
+    analysis.category,
+    analysis.privacy_risk,
+    ...(analysis.tags || [])
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
 function filterItems() {
-  if (activeFilter === 'recommended') return items.filter((item) => item.analysis?.recommended);
-  if (['love', 'maybe', 'no', 'unreviewed'].includes(activeFilter)) return items.filter((item) => item.decision === activeFilter);
-  return items;
+  let result = items;
+  if (activeFilter === 'recommended') result = result.filter((item) => item.analysis?.recommended);
+  else if (['love', 'maybe', 'no', 'unreviewed'].includes(activeFilter)) result = result.filter((item) => item.decision === activeFilter);
+
+  const terms = searchInput.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (terms.length) {
+    result = result.filter((item) => {
+      const haystack = searchableText(item);
+      return terms.every((term) => haystack.includes(term));
+    });
+  }
+  return result;
 }
 
 async function saveDecision(id, decision) {
@@ -43,8 +76,17 @@ function render() {
   const visible = filterItems();
   itemCount.textContent = `${visible.length} of ${items.length}`;
   grid.replaceChildren();
-  emptyState.hidden = items.length > 0;
-  grid.hidden = items.length === 0;
+
+  if (items.length === 0) {
+    emptyTitle.textContent = 'Your shortlist starts here.';
+    emptyMessage.textContent = 'Scan the iPhone library to build your private searchable catalog.';
+  } else if (visible.length === 0) {
+    emptyTitle.textContent = 'No photos match.';
+    emptyMessage.textContent = 'Try a filename, year, AI title, category, tag, or a broader search.';
+  }
+  emptyState.hidden = visible.length > 0;
+  grid.hidden = visible.length === 0;
+
   for (const item of visible) {
     const card = template.content.cloneNode(true);
     const article = card.querySelector('.media-card');
@@ -112,6 +154,8 @@ curateButton.addEventListener('click', async () => {
     await refreshStatus();
   } catch (error) { statusError.textContent = error.message; }
 });
+
+searchInput.addEventListener('input', render);
 
 for (const button of document.querySelectorAll('.filter')) {
   button.addEventListener('click', () => {

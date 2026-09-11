@@ -42,7 +42,9 @@ button.accent { color: #17200e; background: var(--acid); border-color: var(--aci
 .filters { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin: 2rem 0; }
 .filter { padding: .5rem .8rem; border-radius: 999px; }
 .filter.active { color: var(--bg); background: var(--text); }
-#itemCount { margin-left: auto; color: var(--muted); font-size: .75rem; }
+.search-control { margin-left: auto; min-width: min(360px, 100%); }
+.search-control input { width: 100%; min-width: 250px; }
+#itemCount { color: var(--muted); font-size: .75rem; white-space: nowrap; }
 .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
 .media-card { overflow: hidden; background: var(--panel); border: 1px solid var(--line); }
 .image-wrap { aspect-ratio: 4 / 3; position: relative; overflow: hidden; background: #080c0b; }
@@ -71,4 +73,7 @@ button.accent { color: #17200e; background: var(--acid); border-color: var(--aci
   .control-panel { display: block; }
   .actions { margin-top: 1rem; }
   .actions button { flex: 1 1 140px; }
+  .search-control { width: 100%; margin-left: 0; }
+  .search-control input { min-width: 0; }
+  #itemCount { margin-left: auto; }
 }

@@ -54,6 +54,76 @@ Recommended first run:
 4. Run another batch. The prompt will include the tags and categories emerging from your decisions.
 5. Increase scan and AI batch sizes once the taste profile feels right.
 
+## Import the iPhone library
+
+Connect the iPhone to Windows with USB, unlock it, and tap **Trust** or **Allow** if prompted. Then run:
+
+```powershell
+cd photo-curator
+powershell -ExecutionPolicy Bypass -File .\import-iphone.ps1
+```
+
+By default the importer copies the iPhone media library into:
+
+```text
+C:\Users\<you>\Pictures\iPhone-Curator-Staging
+```
+
+The import is recursive and includes supported photos and videos such as HEIC/JPEG plus MOV/MP4 files. Re-running the importer skips media already present in the destination, so interrupted imports can be resumed.
+
+Start the curator against the imported iPhone library with:
+
+```powershell
+npm start -- --source "$env:USERPROFILE\Pictures\iPhone-Curator-Staging" --data ".\data-iphone" --years 100
+```
+
+Then open:
+
+```text
+http://127.0.0.1:4317
+```
+
+Leave **Scan limit** blank and choose **Scan library** to index the entire imported library.
+
+## Search your photos
+
+Use the **Search** box near the top of the local photo page at `http://127.0.0.1:4317`.
+
+Search is instant and can match:
+
+- filenames and folder names
+- capture date or year, such as `2025`
+- media type, such as `image` or `video`
+- AI-generated photo titles
+- AI categories such as `hockey`, `painting`, `people`, or `photography`
+- AI descriptions/reasons
+- AI tags
+- privacy-risk labels
+- your **Awesome / Just OK / Pass** decisions
+
+Examples:
+
+```text
+hockey
+2025
+painting
+sunset
+IMG_1234
+video
+```
+
+Multiple words are combined, so a search such as:
+
+```text
+hockey 2025
+```
+
+only shows items matching both terms.
+
+Filename/date/type searches work as soon as the library has been scanned. Semantic searches such as `hockey`, `sunset`, `painting`, or other visual subjects become more useful after running **Run local curator**, because the local vision model adds titles, categories, descriptions, and tags to the photos.
+
+You can combine the search box with the gallery filters such as **AI shortlist**, **Awesome photos**, **Just OK**, **Pass**, and **Unreviewed**.
+
 ## Select the full five-year library
 
 Once the local curator is running and your feedback has started teaching it your taste:
