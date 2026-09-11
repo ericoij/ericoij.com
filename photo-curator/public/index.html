@@ -45,13 +45,17 @@
         <button class="filter" data-filter="maybe">Just OK</button>
         <button class="filter" data-filter="no">Pass</button>
         <button class="filter" data-filter="unreviewed">Unreviewed</button>
+        <label class="search-control">
+          <span class="label">Search</span>
+          <input id="searchInput" type="search" placeholder="title, tag, date, filename…" autocomplete="off" />
+        </label>
         <span id="itemCount"></span>
       </section>
 
       <section id="emptyState" class="empty-state">
         <span>◎</span>
-        <h2>Your shortlist starts here.</h2>
-        <p>You worked hard for these. Teach the curator which photos show your best.</p>
+        <h2 id="emptyTitle">Your shortlist starts here.</h2>
+        <p id="emptyMessage">You worked hard for these. Teach the curator which photos show your best.</p>
       </section>
       <section id="grid" class="media-grid" aria-label="Curated media"></section>
     </main>
