@@ -1,0 +1,80 @@
+:root { --paper:#efe8da; --ink:#243629; --cream:#f8f4eb; --rust:#b74f34; --gold:#d8a640; --line:#c9c0ad; font-family:"Manrope",sans-serif; color:var(--ink); background:var(--paper); }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; min-width:320px; background:var(--paper); }
+a { color:inherit; }
+.skip-link { position:fixed; top:-5rem; left:1rem; z-index:20; padding:.8rem 1rem; color:white; background:var(--ink); }
+.skip-link:focus { top:1rem; }
+.wiki-header, main, footer { width:min(1240px,calc(100% - 64px)); margin-inline:auto; }
+.wiki-header { height:112px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--ink); }
+.wiki-mark { display:flex; align-items:center; gap:.85rem; font:600 .75rem/1.25 "DM Mono",monospace; letter-spacing:.08em; text-decoration:none; }
+.wiki-mark small { color:#6a7269; font-size:.58rem; }
+.wiki-seal { width:42px; aspect-ratio:1; display:grid; place-items:center; border:1px solid var(--ink); border-radius:50%; font:italic 1.7rem "Newsreader",serif; }
+nav { display:flex; align-items:center; gap:2rem; }
+nav a { font:500 .7rem "DM Mono",monospace; text-decoration:none; text-transform:uppercase; }
+nav a:hover { color:var(--rust); }
+.contribute { padding:.75rem 1rem; border:1px solid var(--ink); border-radius:2px; }
+.wiki-hero { min-height:650px; padding:108px 0 80px; position:relative; border-bottom:1px solid var(--ink); }
+.overline,.entry-meta { font:500 .65rem "DM Mono",monospace; letter-spacing:.11em; text-transform:uppercase; }
+.overline { color:var(--rust); }
+h1 { max-width:900px; margin:1.5rem 0 2rem; font-size:clamp(4rem,8.2vw,7.7rem); font-weight:500; line-height:.82; letter-spacing:-.065em; }
+em { color:var(--rust); font-family:"Newsreader",serif; font-weight:400; }
+.hero-copy { max-width:570px; color:#566158; font:400 1.08rem/1.75 "Newsreader",serif; }
+.search { width:min(600px,100%); margin-top:3rem; }
+.search label { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+.search-field { height:58px; display:flex; align-items:center; gap:.8rem; padding:0 1rem; border:1px solid var(--ink); background:var(--cream); box-shadow:5px 5px 0 var(--ink); }
+.search-field > span { font-size:1.7rem; transform:rotate(-15deg); }
+.search input { flex:1; min-width:0; border:0; outline:0; color:var(--ink); background:transparent; font:500 .86rem "DM Mono",monospace; }
+kbd { padding:.3rem .45rem; border:1px solid var(--line); border-radius:3px; color:#74796f; background:#ebe5d8; font:500 .65rem "DM Mono",monospace; }
+.hero-note { position:absolute; right:2%; top:100px; width:225px; height:225px; padding:1rem; display:flex; flex-direction:column; align-items:center; justify-content:space-between; border:1px solid var(--rust); border-radius:50%; color:var(--rust); font:500 .6rem "DM Mono",monospace; transform:rotate(7deg); }
+.hero-note::before,.hero-note::after { content:""; position:absolute; inset:9px; border:1px dashed var(--rust); border-radius:50%; }
+.hero-note::after { inset:50% 20px auto; border:0; border-top:1px solid var(--rust); border-radius:0; }
+.scribble { margin-top:2rem; font:italic 1.45rem "Newsreader",serif; }
+.archive { padding:100px 0 130px; }
+.archive-heading { display:flex; justify-content:space-between; align-items:end; gap:2rem; }
+h2 { margin:.6rem 0 0; font:400 clamp(2.8rem,5vw,4.8rem)/1 "Newsreader",serif; letter-spacing:-.04em; }
+.archive-heading > p { color:#677068; font:.68rem "DM Mono",monospace; text-transform:uppercase; }
+.filters { margin:3.2rem 0 2rem; display:flex; flex-wrap:wrap; gap:.6rem; }
+.filters button { padding:.65rem 1rem; border:1px solid var(--line); border-radius:999px; color:var(--ink); background:transparent; font:500 .65rem "DM Mono",monospace; text-transform:uppercase; cursor:pointer; }
+.filters button:hover,.filters button.active { border-color:var(--ink); color:var(--paper); background:var(--ink); }
+.entry-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.entry { min-width:0; border:1px solid var(--ink); background:var(--cream); transition:transform .2s,box-shadow .2s; }
+.entry:hover { transform:translate(-3px,-3px); box-shadow:6px 6px 0 var(--ink); }
+.entry[hidden] { display:none; }
+.entry-art { height:260px; position:relative; overflow:hidden; border-bottom:1px solid var(--ink); }
+.entry-body { padding:1.5rem; }
+.entry-meta { margin:0 0 1rem; color:#6a7269; }
+.entry-meta span { color:var(--rust); }
+h3 { margin:0 0 .8rem; font:400 2rem/1.02 "Newsreader",serif; letter-spacing:-.025em; }
+.entry-body > p:not(.entry-meta) { min-height:4.7em; margin:0; color:#687168; font-size:.83rem; line-height:1.55; }
+.entry-body a,.add-entry a { display:flex; justify-content:space-between; margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--rust); font:600 .68rem "DM Mono",monospace; text-decoration:none; text-transform:uppercase; }
+.feature { grid-column:span 2; display:grid; grid-template-columns:1.2fr 1fr; }
+.feature .entry-art { height:auto; min-height:420px; border:0; border-right:1px solid var(--ink); }
+.feature .entry-body { padding:2rem; display:flex; flex-direction:column; justify-content:flex-end; }
+.feature h3 { font-size:2.8rem; }
+.road-art { background:linear-gradient(170deg,#e5b14b 0 48%,#c36142 48% 56%,#355847 56%); }
+.road-art::after { content:""; position:absolute; left:46%; bottom:-20%; width:10%; height:80%; background:#e8ddc5; clip-path:polygon(45% 0,55% 0,100% 100%,0 100%); }
+.road-art span { position:absolute; left:8%; top:10%; font:500 clamp(2rem,4vw,4.5rem)/.85 "DM Mono",monospace; letter-spacing:-.08em; transform:rotate(-5deg); }
+.recipe-art { display:grid; place-items:center; color:#f1deba; background:#a74531; }
+.recipe-art::before { content:""; position:absolute; width:155px; height:155px; border:2px solid #f1deba; border-radius:50%; }
+.recipe-art span { z-index:1; text-align:center; font:500 .7rem/1.7 "DM Mono",monospace; }
+.people-art { display:flex; align-items:end; justify-content:center; gap:-1rem; background:#d7c09b; }
+.people-art i { width:100px; height:180px; display:block; border:1px solid var(--ink); border-radius:50px 50px 0 0; background:#b95337; transform:translateX(16px); }
+.people-art i:nth-child(2) { height:220px; z-index:2; background:#456653; transform:none; }
+.people-art i:nth-child(3) { background:#d49f3d; transform:translateX(-16px); }
+.map-art { display:grid; place-items:center; background:repeating-linear-gradient(25deg,transparent 0 28px,rgba(36,54,41,.18) 29px 30px),#b9c7b3; }
+.map-art span { width:85px; height:85px; display:grid; place-items:center; border:2px solid var(--rust); border-radius:50%; color:var(--rust); font-size:3rem; background:var(--paper); }
+.quote-art { padding:.5rem 1.4rem; color:#ecd6a2; background:#314d40; font:11rem/1 "Newsreader",serif; }
+.add-entry { min-height:460px; display:grid; place-items:center; padding:2rem; color:var(--paper); background:var(--ink); }
+.add-entry:hover { box-shadow:6px 6px 0 var(--rust); }
+.plus { width:54px; height:54px; margin-bottom:2.6rem; display:grid; place-items:center; border:1px solid #8d9b90; border-radius:50%; font-size:1.5rem; }
+.add-entry .overline,.add-entry a { color:#e3b24f; }
+.add-entry h3 { font-size:2.6rem; }
+.add-entry > div > p:not(.overline) { color:#b6c0b7; font-size:.83rem; line-height:1.6; }
+.empty-state { padding:4rem 1rem; border:1px dashed var(--ink); text-align:center; font-family:"DM Mono",monospace; }
+footer { padding:2.5rem 0 3.5rem; display:flex; justify-content:space-between; border-top:1px solid var(--ink); font:500 .62rem "DM Mono",monospace; text-transform:uppercase; }
+footer p { margin:0; }
+footer a { text-decoration:none; }
+@media (max-width:850px) { .wiki-header,main,footer{width:calc(100% - 36px)} nav a:not(.contribute){display:none}.wiki-hero{padding-top:80px}.hero-note{display:none}.entry-grid{grid-template-columns:1fr 1fr}.feature{grid-column:span 2}.archive-heading{align-items:start;flex-direction:column}.archive-heading>p{margin:0} }
+@media (max-width:580px) { .wiki-header{height:88px}.wiki-mark small{display:none}.contribute{padding:.6rem}.wiki-hero{min-height:590px;padding-top:72px}h1{font-size:clamp(3.5rem,18vw,5rem)}kbd{display:none}.archive{padding:72px 0 90px}.entry-grid{grid-template-columns:1fr}.feature{grid-column:auto;display:block}.feature .entry-art{min-height:310px;border:0;border-bottom:1px solid var(--ink)}.entry-art{height:240px}footer{flex-direction:column;gap:1rem}footer p:nth-child(2){display:none} }
+@media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto}.entry{transition:none} }

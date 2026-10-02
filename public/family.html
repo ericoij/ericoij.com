@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A private-feeling home for the OIJ family stories, recipes, people, and places." />
+    <meta name="theme-color" content="#efe8da" />
+    <title>OIJ Family Wiki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="family.css" />
+    <script src="family.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the archive</a>
+    <header class="wiki-header">
+      <a class="wiki-mark" href="index.html" aria-label="Return to Eric OIJ home">
+        <span class="wiki-seal" aria-hidden="true">O</span>
+        <span>THE OIJ FAMILY<br /><small>COMMONPLACE BOOK</small></span>
+      </a>
+      <nav aria-label="Family wiki navigation">
+        <a href="#people">People</a>
+        <a href="#stories">Stories</a>
+        <a href="#recipes">Recipes</a>
+        <a class="contribute" href="mailto:hello@ericoij.com?subject=Family%20wiki%20contribution">+ Contribute</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="wiki-hero" aria-labelledby="wiki-title">
+        <p class="overline">EST. IN MEMORY · KEPT WITH LOVE</p>
+        <h1 id="wiki-title">Every family is<br />a <em>living archive.</em></h1>
+        <p class="hero-copy">A shared shelf for the names, places, recipes, photographs, and little stories we never want to lose.</p>
+        <form class="search" role="search">
+          <label for="wiki-search">Search the family archive</label>
+          <div class="search-field">
+            <span aria-hidden="true">⌕</span>
+            <input id="wiki-search" type="search" placeholder="Try “recipe” or “California”" autocomplete="off" />
+            <kbd>⌘ K</kbd>
+          </div>
+        </form>
+        <div class="hero-note" aria-hidden="true">
+          <span>VOL. I</span>
+          <span class="scribble">ours to remember</span>
+          <span>2026</span>
+        </div>
+      </section>
+
+      <section class="archive" aria-labelledby="archive-title">
+        <div class="archive-heading">
+          <div>
+            <p class="overline">BROWSE THE COLLECTION</p>
+            <h2 id="archive-title">Begin anywhere.</h2>
+          </div>
+          <p><span id="result-count">6</span> entries in the family archive</p>
+        </div>
+
+        <div class="filters" aria-label="Filter archive entries">
+          <button class="active" type="button" data-filter="all">All entries</button>
+          <button type="button" data-filter="people">People</button>
+          <button type="button" data-filter="stories">Stories</button>
+          <button type="button" data-filter="recipes">Recipes</button>
+          <button type="button" data-filter="places">Places</button>
+        </div>
+
+        <div class="entry-grid">
+          <article class="entry feature" data-category="stories places" data-search="the road west family story california 1968 station wagon">
+            <div class="entry-art road-art" aria-hidden="true"><span>CALIFORNIA<br />OR BUST</span></div>
+            <div class="entry-body">
+              <p class="entry-meta"><span>STORY</span> · 8 MIN READ</p>
+              <h3>The road west, 1968</h3>
+              <p>Four people, one station wagon, and a hand-drawn map that was mostly wrong.</p>
+              <a href="mailto:hello@ericoij.com?subject=The%20road%20west%2C%201968">Read the story <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="entry" id="recipes" data-category="recipes" data-search="sunday tomato sauce recipe kitchen handwritten">
+            <div class="entry-art recipe-art" aria-hidden="true"><span>2 PINCHES<br />MORE THAN<br />YOU THINK</span></div>
+            <div class="entry-body">
+              <p class="entry-meta"><span>RECIPE</span> · FROM THE KITCHEN</p>
+              <h3>Sunday tomato sauce</h3>
+              <p>The version written in the margin, with the one ingredient nobody mentions.</p>
+              <a href="mailto:hello@ericoij.com?subject=Sunday%20tomato%20sauce">Open recipe <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="entry" id="people" data-category="people" data-search="meet the family people generations portraits family tree">
+            <div class="entry-art people-art" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="entry-body">
+              <p class="entry-meta"><span>PEOPLE</span> · 4 GENERATIONS</p>
+              <h3>Meet the family</h3>
+              <p>Names, nicknames, branches, and the connections that make the tree.</p>
+              <a href="mailto:hello@ericoij.com?subject=Family%20tree">Explore the tree <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="entry" data-category="places" data-search="places we called home houses map hometown">
+            <div class="entry-art map-art" aria-hidden="true"><span>⌖</span></div>
+            <div class="entry-body">
+              <p class="entry-meta"><span>PLACE</span> · A FAMILY MAP</p>
+              <h3>Places we called home</h3>
+              <p>A map of front porches, hometowns, and the streets we still know by heart.</p>
+              <a href="mailto:hello@ericoij.com?subject=Family%20places">View the map <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="entry" id="stories" data-category="stories people" data-search="things grandpa always said sayings story grandfather advice">
+            <div class="entry-art quote-art" aria-hidden="true">“</div>
+            <div class="entry-body">
+              <p class="entry-meta"><span>ORAL HISTORY</span> · 12 SAYINGS</p>
+              <h3>Things Grandpa always said</h3>
+              <p>Advice, punchlines, and phrases that somehow became part of our vocabulary.</p>
+              <a href="mailto:hello@ericoij.com?subject=Grandpa%27s%20sayings">Keep reading <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="entry add-entry" data-category="all" data-search="contribute add memory photo recipe story">
+            <div>
+              <span class="plus" aria-hidden="true">+</span>
+              <p class="overline">THE ARCHIVE GROWS WITH YOU</p>
+              <h3>Have something<br />to add?</h3>
+              <p>Send a photograph, correct a date, share a recipe, or tell the story only you know.</p>
+              <a href="mailto:hello@ericoij.com?subject=Family%20wiki%20contribution">Contribute a memory →</a>
+            </div>
+          </article>
+        </div>
+        <p class="empty-state" hidden>No family entries match that search. Try another word.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made for the OIJ family, with love.</p>
+      <p>Private stories · Shared history</p>
+      <a href="index.html">Eric’s studio ↗</a>
+    </footer>
+  </body>
+</html>
